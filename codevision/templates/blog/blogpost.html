@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block title %}BLOG - CODEVISION {% endblock title%}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'blog/css/blogpost.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<style>
+  .socMedia {
+    display: none;
+  }
+</style>
+
+{% endblock style %}
+{% block body %}
+<div class="container">
+
+  {% load humanize %}
+  {% load extras %}
+
+  <div class="viewPost">
+    <div class="authorDetails">
+      <div class="txt-details">
+        <h4>By {{post.author}}</h4>
+        <p class="date">{{post.timeStamp}}</p>
+      </div>
+      <div class="image">
+        <img src="/media/{{post.authorImage}}" alt="image" />
+      </div>
+    </div>
+  </div>
+  <h2>{{post.title}}</h2>
+  <span class="category">{{post.category}}</span>
+  <img class="post-image" src="/media/{{post.postImage}}" alt="">
+  <p>{{post.content}}</p>
+</div>
+
+<!-- Comment Html  -->
+<div class="container cmt-container">
+  <h2> Comments:</h2>
+  <div class="put-cmt">
+    <form action="/blog/postComments/" method="post">
+      {% csrf_token %}
+      <input type="text" name="comment" placeholder="Enter Your Comment Here">
+      <input type="hidden" name="postSno" value="{{post.sn}}">
+      <input type="hidden" name="parentSno" value="">
+      <button class="btn btn-outline-primary" type="submit">Post A Comment </button>
+    </form>
+  </div>
+
+  {% comment %} <Comments> {% endcomment %}
+
+    {% for comment in comments %}
+    <div class="comment">
+      <div class="img-name-time">
+        <div class="img-name">
+          <img src="{% static 'images/blog/user.png' %}" alt="">
+        </div>
+        <div class="name-time">
+          <h3 class="userName" style="color: blue;">{{comment.user.username}}</h3>
+          <span class="time-cmt">{{comment.time | naturaltime}}</span>
+        </div>
+      </div>
+      <div class="cmt-text">
+        <p style="font-weight: bold;">{{comment.comment}}</p>
+      </div>
+      <a type="button" class="btn btn-outline-primary my-2" data-bs-toggle="collapse" href="#reply{{comment.sno}}"
+        role="button" aria-expanded="false" aria-controls="collapseExample">
+        Post A Reply
+      </a>
+      <div class="collapse" id="reply{{comment.sno}}">
+        <div class="card card-body">
+          <form action="/blog/postComments/" method="post">
+            {% csrf_token %}
+            <input type="text" name="comment" placeholder="Enter Your reply Here">
+            <input type="hidden" name="parentSno" value="{{comment.sno}}">
+            <input type="hidden" name="postSno" value="{{post.sn}}">
+            <button class="btn btn-outline-primary" type="submit" name="SubmitReplyBtn">Comment </button>
+          </form>
+        </div>
+      </div>
+
+
+      {% for reply in replyDict|get_item:comment.sno %}
+      <div class="cmt-reply-box">
+        <div class="reply-comment">
+          <h3 class="reply-userName">{{reply.user.username}}</h3>
+          <span class="time-cmt">{{reply.time | naturaltime}}</span>
+        </div>
+        <div class="reply-cmt">{{reply.comment}}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Recommandation blog html -->
+<div class="container">
+  {% if posts|length > 0 %}
+  <h2 class="recmd">Recommended Blogs:</h2>
+  {% for post in posts|slice:"5" %}
+  <div class="post">
+    <div class="post-details">
+      <h4>By {{post.author}}</h4>
+      <p class="date">{{post.timeStamp}}</p>
+      <span class="category">{{post.category}}</span>
+      <h2>{{post.title | truncatechars:100}}</h2>
+      <p>{{post.content | truncatechars:200}}</p>
+      <a href="/blog/{{post.slug}}" class="butn">Read More</a>
+    </div>
+    <div class="image">
+      <img src="/media/{{post.authorImage}}" alt="image" />
+    </div>
+  </div>
+  {% endfor %}{% endif %}
+</div>
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    {% endblock js %}
+
+    {% endblock body %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" , minimum-scale="1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet" />
+    <title>{% block title %}{% endblock title %}</title>
+    {% block style %}{% endblock style %}
+</head>
+
+<body>
+    <div class="site">
+        <!-- Header Containing navigation bar -->
+        <header>
+            <a href="/" class="logo" id="logo">
+                <img src="{% static 'images/logo/logo.png' %}" alt="" class="logoImg" id="logoImg" />
+            </a>
+            <nav class="headerNav" id="headerNav">
+                <ul>
+                    <li>
+                        <a href="/" class="{% block homeActive %}{% endblock homeActive %}">Home</a>
+                    </li>
+                    <li>
+                        <a class="{% block aboutActive %}{% endblock aboutActive %}" href="/about/">About us</a>
+                    </li>
+                    <li>
+                        <a class="{% block contactActive %}{% endblock contactActive %}" href="/contact/">Contact us</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="{% block blogActive %}{% endblock blogActive %}" href="/blog/">Blog</a>
+                    </li>
+                    <li>
+                        <a class="{% block logoutActive %}{% endblock logoutActive %}"
+                            href="/accounts/logout/">logout</a>
+                    </li>
+                    <li>
+                        <span style="font-weight: bold; margin: 0 5px;">Hello {{ user.username }} </span>
+                    </li>
+                    <li>
+                        <div class="search-form">
+                            <form action="/search/" method="get">
+                                <input type="text" name="query" id="query" />
+                                <button type="submit">Search</button>
+                            </form>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="{% block loginActive %}{% endblock loginActive %}" href="/accounts/login/">login</a>
+                    </li>
+                    <li>
+                        <a class="{% block registerActive %}{% endblock registerActive %}"
+                            href="/accounts/register/">register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="hamburgericon" id="hamburger">
+                <i class="fa fa-bars"></i>
+            </div>
+        </header>
+        {% for message in messages %}
+        <div class="msgBox {{message.tags}}" id="msgBox">
+            <p>{{message}}</p>
+            <i class="fa fa-close" id="closeMsgBox"></i>
+        </div>
+        <script>
+            let msgBox = document.getElementById("msgBox");
+            let closeMsgBox = document.getElementById("closeMsgBox");
+            // Message box js
+            closeMsgBox.addEventListener("click", (e) => {
+                msgBox.style.display = "none";
+            });
+        </script>
+
+        {% endfor %}
+
+        <!-- Social Media on ls -->
+        <div class="socMedia">
+            <ul class="socialMedia" id="socialMedia">
+                <li class="socialMediaItems">
+                    <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                </li>
+                <li class="socialMediaItems">
+                    <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                </li>
+                <li class="socialMediaItems">
+                    <a href="#"><i class="fa fa-github"></i><span>Github</span></a>
+                </li>
+                <li class="socialMediaItems">
+                    <a href="#"><i class="fa fa-linkedin"></i><span>Linkdin</span></a>
+                </li>
+                <li class="socialMediaItems">
+                    <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                </li>
+                <br />
+                <div class="themeCtrl" id="themeMode">
+                    <i class="fa fa-moon-o" id="themeTxt"></i>
+                </div>
+            </ul>
+            <i class="fa fa-angle-left" id="socCtrl"></i>
+        </div>
+        {% block body %}{% endblock body %}
+    </div>
+    <script src="{% static 'base.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+
+</html>

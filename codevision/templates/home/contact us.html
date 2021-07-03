@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us | CODEVISION{% endblock title %}
+{% block contactActive %} active {% endblock contactActive %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'home/css/contact us.css' %}">{% endblock style %}
+{% block body %}
+{% comment %} About us Html goes here {% endcomment %}
+<div class="container">
+<form action="/contact/" method="post">
+{% csrf_token %}
+<div class="formItm">
+<div class="formItm">
+<input type="text" placeholder="Type Your Name Here." name="uname" id="uname">
+</div>
+
+<div class="formItm">
+<input type="text" placeholder="Enter Your Email Here." name="email" id="email">
+</div>
+
+<div class="formItm">
+<input type="tel" placeholder="Enter Your Phone Number." name="phone" id="phone">
+</div>
+
+<div class="formItm">
+<textarea type="text" placeholder="Type your message here." name="msg" id="msg"></textarea>
+</div>
+
+
+<button class="btnSubmit" type="submit">Submit</button>
+</form>
+</div>
+{% endblock body %}

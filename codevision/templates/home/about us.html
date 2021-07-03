@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}About Us | CODEVISION{% endblock title %}
+{% block aboutActive %} active {% endblock aboutActive %}
+{% block body %}
+{% comment %} About us Html goes here {% endcomment %}
+{% block style %}
+<style>
+.container{
+    width: 94%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.cnt-box{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6%;
+}
+.bx-1{
+    border-right: 2px solid gray;
+    font-size: 3rem;
+    letter-spacing: 5px;
+}
+.icons{
+    margin-top: 12px;
+}
+.icons i{
+    margin: 10px 4px;
+    font-size: 25px;
+}
+</style>
+{% endblock style %}
+
+<div class="container">
+
+<div class="cnt-box bx-1">ABOUT US</div>
+<div class="cnt-box">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro sunt maiores non consequuntur a omnis labore voluptatibus autem tenetur, ad voluptates cumque aliquam obcaecati sit assumenda, impedit cupiditate quisquam eius nihil veritatis. Provident labore vitae deserunt laboriosam! Ullam cupiditate ratione, quaerat animi a laudantium similique nam impedit iusto perspiciatis quae optio veritatis mollitia quibusdam aspernatur omnis ex veniam obcaecati sequi eaque reiciendis? Numquam nemo aliquid natus. Ipsa alias veniam excepturi, nisi recusandae ex eum voluptas, aliquam soluta perspiciatis vero. Quos sint nisi, tempore iusto sed illum consequatur veritatis deserunt! Blanditiis sapiente ad, quae dolores quasi alias distinctio, quibusdam reiciendis iusto consequatur est voluptatibus voluptatum molestias non voluptates laborum. Dolore atque ipsum provident, rerum at aliquid maxime quasi voluptates cumque vitae, delectus doloremque quo debitis laudantium ex! Magni culpa, soluta voluptatum consequuntur mollitia veritatis dolore explicabo, dolor sunt id aliquid. Officiis omnis ipsum delectus necessitatibus sit eveniet doloremque. Atque a enim exercitationem fugiat ad impedit asperiores laborum veritatis molestias, tempore minima quis itaque esse tempora sunt ab consequatur eius necessitatibus nostrum assumenda optio maiores nihil excepturi. Esse tempora, ad mollitia dicta officiis, perferendis eveniet quam ipsa culpa laboriosam similique molestiae nihil veniam corrupti minus harum, omnis aspernatur distinctio at? Id, nam.</p> 
+<div class="icons">
+<i class="fa fa-facebook"></i>
+<i class="fa fa-twitter"></i>
+<i class="fa fa-github"></i>
+</div>
+</div>
+
+</div>
+
+{% endblock body %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %}Search - CODEVISION {% endblock title%}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'blog/css/bloghome.css' %}">{% endblock style %}
+{% block body %}
+<div class="container">
+<h2>Results:</h2>
+
+{% if allPosts|length < 1 %}
+<div class="result-not-found">
+<h3>No result found</h3>
+</div>
+{% endif %}
+
+{% for post in allPosts %}
+  <div class="post">
+    <div class="post-details">
+    <h4>By {{post.author}}</h4>
+    <p class="date">{{post.timeStamp}}</p>
+    <span class="category">{{post.category}}</span>
+    <h2>{{post.title  | truncatechars:100}}</h2>
+    <p>{{post.content  | truncatechars:200}}</p>
+    <a href="/blog/{{post.slug}}" class="btn">Read More</a>
+    </div>
+    <div class="image">
+  <img src="/media/{{post.authorImage}}" alt="image" /></div>
+  </div>
+{% endfor %}
+</div>
+{% endblock body %}

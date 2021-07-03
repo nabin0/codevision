@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Register | CODEVISION{% endblock title %}
+{% block registerActive %}active{% endblock registerActive %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">{% endblock style %}
+{% block body %}
+{% comment %} About us Html goes here {% endcomment %}
+<div class="container">
+<form action="/accounts/register/" method="post">
+{% csrf_token %}
+<div class="formItm">
+<label for="fname">First Name: </label>
+<input type="text" placeholder="First Name" name="fname" id="fname">
+</div>
+
+<div class="formItm">
+<label for="fname">Last Name: </label>
+<input type="text" placeholder="Last Name" name="lname" id="lname">
+</div>
+
+<div class="formItm">
+<label for="fname">Username: </label>
+<input type="text" placeholder="Choose your username." name="username" id="username">
+</div>
+
+<div class="formItm">
+<label for="fname">Email: </label>
+<input type="text" placeholder="Your Email Here." name="email" id="email">
+</div>
+
+<div class="formItm">
+<label for="fname">Phone: </label>
+<input type="tel" placeholder="Ehter your Phone Number." name="phone" id="phone">
+</div>
+
+<div class="formItm">
+      <fieldset data-role="controlgroup">
+      <legend>Choose your gender:</legend>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male" checked>
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female">
+      </fieldset>
+</div>
+
+<div class="formItm">
+<label for="fname">Password: </label>
+<input type="text" placeholder="Choose your Password." name="password" id="password">
+</div>
+
+<div class="formItm">
+<label for="fname">Confirm Password: </label>
+<input type="text" placeholder="Confirm your password." name="confirm_password" id="confirm_password">
+</div>
+
+<button class="btnSubmit" type="submit">Register</button>
+</form>
+</div>
+{% endblock body %}

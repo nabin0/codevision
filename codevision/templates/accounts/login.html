@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Login | CODEVISION{% endblock title %}
+{% block loginActive %}active{% endblock loginActive %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">{% endblock style %}
+{% block body %}
+{% comment %} Login Html goes here {% endcomment %}
+<div class="container">
+<form action="/accounts/login/" method="post">
+{% csrf_token %}
+<h2>Login </h2>
+<div class="formItm">
+<input type="text" placeholder="Username" name="username" id="username">
+</div>
+
+<div class="formItm">
+<input type="text" placeholder="Password" name="password" id="password">
+</div>
+<button class="btnSubmit" type="submit">Login</button>
+</form>
+</div>
+{% endblock body %}

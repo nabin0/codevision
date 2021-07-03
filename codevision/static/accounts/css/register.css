@@ -1,0 +1,41 @@
+.container {
+  width: 70%;
+  margin: 50px auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.container form {
+  display: flex;
+  width: 100%;
+  padding: 2% 5%;
+  flex-direction: column;
+}
+.formItm {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 6px 0px;
+  flex-direction: column;
+}
+.formItm label {
+  font-weight: bold;
+}
+.formItm input {
+  background: var(--light);
+  outline: none;
+}
+.btnSubmit {
+  width: auto;
+  margin-top: 20px;
+  padding: 4px;
+  background: rgb(9 163 236);
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 3px -3px 0px -3px,
+    rgb(31, 193, 27) 3px -3px, rgb(255, 255, 255) 6px -6px 0px -3px,
+    rgb(255, 217, 19) 6px -6px, rgb(255, 255, 255) 8px -8px 0px -3px,
+    rgb(255, 156, 85) 6px -8px, rgb(255, 255, 255) 10px -10px 0px -3px,
+    rgb(255, 85, 85) 10px -10px;
+}
